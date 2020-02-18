@@ -1,3 +1,8 @@
 select quartername, coursename from quarter
 cross join course;
 
+select firstname, lastname, email, studentstartdate
+from person
+inner join student
+on person.personkey=student.personkey
+where studentstartdate between '2017-01-01' and '2017-12-31';
