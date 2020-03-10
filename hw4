@@ -1,0 +1,18 @@
+select coursename from course
+where coursekey in
+(select coursekey from certificatecourse
+where certificatekey in
+(select certificatekey from certificate
+where certificate.certificatekey=3));
+
+select firstname, lastname, dateadded from person
+where dateadded=(select min(dateadded) from person);
+
+select studentkey from student
+where studentkey not in
+(select studentkey from roster);
+
+select sectionkey, round(avg(finalgrade), 2) as sectionaverage
+from roster
+group by sectionkey
+having avg(finalgrade) is not null;
