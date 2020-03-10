@@ -1,0 +1,21 @@
+select pricebegindate, pricepercredit*5 as pricefor5credit 
+from pricehistory
+where pricebegindate='2018-01-01';
+
+select pricebegindate, round(pricepercredit*15*pricediscount, 2) as pricefor15credit
+from pricehistory
+where pricebegindate='2018-01-01';
+
+select pricebegindate, to_char(pricepercredit*15*pricediscount, '$9,999.99') as pricefor15credit
+from pricehistory
+where pricebegindate='2018-01-01';
+
+select * from logintable
+where username='JSullivan'
+and userpassword=crypt('SullivanPass', userpassword);
+
+select personkey, dateadded, age(dateadded) from person;
+
+select * from certificate
+where certificatename='Python Programming';
+
