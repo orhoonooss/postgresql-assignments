@@ -6,3 +6,9 @@ from person
 inner join student
 on person.personkey=student.personkey
 where studentstartdate between '2017-01-01' and '2017-12-31';
+
+select instructorkey, coursename, sectionkey
+from coursesection
+inner join course
+on coursesection.coursekey=course.coursekey
+where sectionkey=17;
