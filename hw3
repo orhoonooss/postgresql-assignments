@@ -7,8 +7,61 @@ inner join student
 on person.personkey=student.personkey
 where studentstartdate between '2017-01-01' and '2017-12-31';
 
-select instructorkey, coursename, sectionkey
+select instructorkey, coursename, coursesection.sectionkey, student.studentkey, lastname, firstname
 from coursesection
 inner join course
 on coursesection.coursekey=course.coursekey
-where sectionkey=17;
+inner join roster
+on coursesection.sectionkey=roster.sectionkey
+inner join student
+on roster.studentkey=student.studentkey
+inner join person
+on student.personkey=person.personkey
+where coursesection.sectionkey=17;
+
+select sum(studentkey), coursename, quartername
+from course
+inner join coursesection
+on course.coursekey=coursesection.coursekey
+inner join quarter
+on coursesection.quarterkey=quarter.quarterkey
+inner join roster
+on coursesection.sectionkey=roster.sectionkey
+group by coursename;
+
+select coursename, round(avg(finalgrade),2)
+from course
+inner join coursesection
+on course.coursekey=coursesection.coursekey
+inner join roster
+on coursesection.sectionkey=roster.sectionkey
+group by coursename;
+
+select lastname, round(avg(finalgrade), 2) averagegrade
+from student
+inner join person
+on student.personkey=person.personkey
+inner join roster
+on student.studentkey=roster.studentkey
+where roster.studentkey=21
+group by lastname;
+
+select distinct lastname, firstname, statuskey
+from person
+left outer join instructor
+on instructor.personkey=person.personkey;
+
+select distinct coursename
+from course
+left outer join coursesection
+on course.coursekey=coursesection.coursekey;
+
+select distinct coursename
+from course
+full join coursesection
+on course.coursekey=coursesection.coursekey;
+
+select certificatename, coursename
+from certificate
+natural join certificatecourse
+natural join course;
