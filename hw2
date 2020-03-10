@@ -19,3 +19,19 @@ select personkey, dateadded, age(dateadded) from person;
 select * from certificate
 where certificatename='Python Programming';
 
+select count(personkey) as numberofpeople, extract(year from dateadded) as yearadded
+from person
+group by yearadded;
+
+select round(avg(finalgrade), 2) from roster;
+
+select max(finalgrade) from roster;
+
+select round(avg(finalgrade), 2) as average, sectionkey 
+from roster
+group by sectionkey;
+
+select round(avg(finalgrade), 2) as average, studentkey
+from roster
+group by studentkey
+having avg(finalgrade)>=3.5;
