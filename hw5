@@ -1,0 +1,37 @@
+insert into course(coursename, credits, coursedescription)
+values(testcourse, 0, 'this is a test');
+
+insert into person(lastname, firstname, email, address, city, state, postalcode, phone, dateadded)
+values('Roberta', 'Hernadez', 'rhernadez@outlook.com', 'Apt101, 234 Nelson Street', 'Seattle', 'WA', '98122', '2065552019', '2020-03-12');
+
+insert into logintable(username, personkey, userpassword, datelastchanged)
+values('RHernadez', '405', 'crypt(‘HernadezPass’, gen_salt('bf', 8))', '2020-03-12');
+
+insert into student(personkey, studentstartdate, statuskey)
+values('405', '2020-03-12', '1');
+
+insert into person(lastname, firstname, email, address, city, state, postalcode, phone, dateadded)
+values('Marylin', 'Brenen', 'Maylin.Brenen@getcerts.com', '1983 South Madison', 'Seattle', 'WA', '98122', '206555-7798', '2020-03-12');
+insert into instructor(personkey, hiredate, statuskey)
+values('408', '2020-03-12', '1');
+
+insert into instructorarea(instructionalareakey, instructorkey)
+values('4', '12');
+insert into instructorarea(instructionalareakey, instructorkey)
+values('3', '12');
+insert into instructorarea(instructionalareakey, instructorkey)
+values('2', '12');
+
+insert into logintable(username, personkey, userpassword, datelastchanged)
+values('MBrenen', '408', 'BrenenPass', '2020-03-12');
+
+update person
+set lastname='Clarkson', email='geraldineclark@msn.com'
+where personkey=211;
+
+update roster
+set finalgrade='3.22' where rosterkey=1179;
+
+delete from course where coursename='testcourse';
+
+
