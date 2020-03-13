@@ -1,0 +1,55 @@
+create table "location" (
+locationkey serial primary key,
+locationname text not null,
+locationaddress text not null,
+locationcity text not null,
+locationstate char(2) default 'WA',
+postalcode varchar(12) not null,
+phone varchar(13) not null,
+email text not null unique);
+
+create table seminar (
+seminarkey serial primary key,
+locationkey int not null,
+theme text not null,
+seminardate date not null,
+descriotion text);
+
+create table seminardetails (
+seminardetailkey serial,
+seminarkey int not null,
+topic text not null,
+presenttime time,
+room char(5),
+instructorkey int,
+description text);
+
+alter table seminardetails
+add primary key (seminardetailkey);
+
+alter table seminardetails
+add constraint fk_seminar foreign key (seminarkey)
+references seminar(seminarkey);
+add constraint fk_instructor foreign key (instructorkey)
+references instructor(instructorkey);
+
+create table attendence (
+attendencekey serial primary key,
+seminardetailkey int not null,
+personkey int not null);
+
+alter table person
+add newsletter boolean default true;
+
+alter table roster
+add constraint chk_grade check (finalgrade between 0 and 4);
+
+create temp table rosterlist(
+studentkey int,
+finalgrade numeric null);
+
+insert into rosterlist(studentkey, finalgrade)
+select studentkey, finalgrade
+from roster;
+
+drop table rosterlist;
