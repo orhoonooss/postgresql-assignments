@@ -1,0 +1,7 @@
+create or replace function makeusername(firstname text, lastname text)
+returns text as $$
+begin
+return upper(substring(firstname, 1,1) || lastname);
+end;
+$$ language plpgsql;
+
