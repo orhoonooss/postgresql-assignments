@@ -1,0 +1,17 @@
+create schema instructorschema;
+
+create view instructorschema.instructorview
+as select firstname, lastname, email, finalgrade, sectionkey
+from person
+inner join student
+on person.personkey=student.personkey
+inner join roster
+on student.studentkey=roster.studentkey
+where sectionkey=71;
+
+create view instructorschema.instructorupdatableview
+as select personkey, firstname, lastname, email, address, city, state, 
+postalcode, phone, dateadded, newsletter
+from person
+where state='WA';
+
