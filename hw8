@@ -1,7 +1,23 @@
 create or replace function makeusername(firstname text, lastname text)
 returns text as $$
 begin
-return upper(substring(firstname, 1,1) || lastname);
+return upper(substring(firstname, 1,1)) || lastname;
 end;
 $$ language plpgsql;
+
+create or replace function numberofcredit(certificatekey integer )
+returns integer as $$
+begin
+return num;
+end;
+$$ language plpgsql;
+
+create or replace function costofsection(sectionkey numeric )
+returns numeric as $$
+begin
+return pricepercredit*credits;
+end;
+$$ language plpgsql;
+
+
 
