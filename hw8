@@ -8,7 +8,7 @@ $$ language plpgsql;
 create or replace function numberofcredit(certificatekey integer )
 returns integer as $$
 begin
-return num;
+return course.credit;
 end;
 $$ language plpgsql;
 
@@ -19,5 +19,9 @@ return pricepercredit*credits;
 end;
 $$ language plpgsql;
 
-
+select certificate.certificatekey, certificate(certificate.certificatekey)from certificate
+inner join certificatecourse
+on certificatecourse.certificatekey=certificate.certificatekey
+inner join course
+on course.coursekey=certificatecourse.coursekey;
 
