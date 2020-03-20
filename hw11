@@ -1,0 +1,12 @@
+select * from information_schema.tables;
+
+select column_name, data_type from information_schema.columns
+where table_name='certificate';
+
+create index on person(lastname);
+
+create index on roster(studentkey);
+
+create index on coursesection(coursekey, quarterkey, sectionyear);
+
+create role mbrown with password 'P@ssw0rd1' login, inherit;
