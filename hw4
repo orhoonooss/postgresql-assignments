@@ -27,4 +27,11 @@ inner join roster
 on student.studentkey=roster.studentkey
 where sectionkey=30;
 
-
+select firstname, lastname, finalgrade, sectionkey
+from person
+inner join student
+on person.personkey=student.personkey
+inner join roster
+on student.studentkey=roster.studentkey
+where finalgrade<
+(select round(avg(finalgrade), 2) from roster) order by sectionkey;
