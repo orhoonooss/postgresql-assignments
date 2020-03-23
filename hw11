@@ -9,4 +9,14 @@ create index on roster(studentkey);
 
 create index on coursesection(coursekey, quarterkey, sectionyear);
 
-create role mbrown with password 'P@ssw0rd1' login, inherit;
+create role instructorrole;
+grant usage on schema public to instructorrole;
+grant select on all tables in schema public to instructorrole;
+grant update on all tables in schema public to instructorrole;
+grant insert on all tables in schema public to instructorrole;
+grant execute on all functions in schema public to instructorrole;
+grant usage on schema instructorschema to instructorrole;
+grant select on all tables in schema instructorschema to instructorrole;
+grant execute on all functions in schema instructorschema to instructorrole;
+create role mbrown with password 'P@ssw0rd1' login inherit;
+grant instructorrole to mbrown;
