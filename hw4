@@ -12,7 +12,19 @@ select studentkey from student
 where studentkey not in
 (select studentkey from roster);
 
-select sectionkey, round(avg(finalgrade), 2) as sectionaverage
+select sectionkey, round(avg(finalgrade), 2) as sectionaverage,
+(select round(avg(finalgrade), 2) as ovarallaverage from roster),
+round(avg(finalgrade), 2)-(select round(avg(finalgrade), 2) as ovarallaverage from roster) as diff
 from roster
 group by sectionkey
 having avg(finalgrade) is not null;
+
+select student.studentkey, firstname, lastname, email
+from person
+inner join student
+on person.personkey=student.personkey
+inner join roster
+on student.studentkey=roster.studentkey
+where sectionkey=30;
+
+
